@@ -1,7 +1,14 @@
 <?php
 
+use App\Http\Controllers\Admin\HumanController;
+use App\Http\Controllers\ProfileController;
+
 use Illuminate\Support\Facades\Route;
 use PhpParser\Node\Stmt\Return_;
+use App\Http\Controllers\PagesController;
+use App\Http\Controllers\Admin\InfoController;
+use App\Http\Controllers\Admin\NumberController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +21,7 @@ use PhpParser\Node\Stmt\Return_;
 |
 */
 
-Route::get('/', function () {
+/* Route::get('/', function () {
     return view('welcome');
 });
 
@@ -69,216 +76,41 @@ Route::prefix('users/')->name('users.')->group(function(){
     })->name('project');
 
 });
-/////////////////////////////////////2 manager
-
-Route::prefix('manager/')->name('manager.')->group(function(){
-
-
-    Route::get('contact',function(){
-        return view('manager.contact');
-    })->name('contact');
-
-    Route::get('home',function(){
-        return view('manager.home');
-    })->name('home');
-
-    Route::get('server',function(){
-        return view('manager.server');
-    })->name('server');
-
-    Route::get('admin',function(){
-        return view('manager.admin');
-    })->name('admin');
-
-    Route::get('index',function(){
-        return view('manager.index');
-    })->name('index');
-
-    Route::get('about1',function(){
-        return view('manager.about1');
-    })->name('about1');
-
-    Route::get('content',function(){
-        return view('manager.content');
-    })->name('content');
-
-    Route::get('link',function(){
-        return view('manager.link');
-    })->name('link');
-
-    Route::get('portfolio',function(){
-        return view('manager.portfolio');
-    })->name('portfolio');
-
-    Route::get('project',function(){
-        return view('manager.project');
-    })->name('project');
-
-});
-
-/////////////////////////////////////3 admin
-
-Route::prefix('admin/')->name('admin.')->group(function(){
-
-
-    Route::get('contact',function(){
-        return view('admin.contact');
-    })->name('contact');
-
-    Route::get('home',function(){
-        return view('admin.home');
-    })->name('home');
-
-    Route::get('server',function(){
-        return view('admin.server');
-    })->name('server');
-
-    Route::get('admin',function(){
-        return view('admin.admin');
-    })->name('admin');
-
-    Route::get('index',function(){
-        return view('admin.index');
-    })->name('index');
-
-    Route::get('about1',function(){
-        return view('admin.about1');
-    })->name('about1');
-
-    Route::get('content',function(){
-        return view('admin.content');
-    })->name('content');
-
-    Route::get('link',function(){
-        return view('admin.link');
-    })->name('link');
-
-    Route::get('portfolio',function(){
-        return view('admin.portfolio');
-    })->name('portfolio');
-
-    Route::get('project',function(){
-        return view('admin.project');
-    })->name('project');
-
-});
-
-////////////////////////////////////////4 client
-
-Route::prefix('client/')->name('client.')->group(function(){
-
-
-    Route::get('contact',function(){
-        return view('client.contact');
-    })->name('contact');
-
-    Route::get('home',function(){
-        return view('client.home');
-    })->name('home');
-
-    Route::get('server',function(){
-        return view('client.server');
-    })->name('server');
-
-    Route::get('admin',function(){
-        return view('client.admin');
-    })->name('admin');
-
-    Route::get('about1',function(){
-        return view('client.about1');
-    })->name('about1');
-
-    Route::get('index',function(){
-        return view('client.index');
-    })->name('index');
-
-    Route::get('content',function(){
-        return view('client.content');
-    })->name('content');
-
-    Route::get('link',function(){
-        return view('client.link');
-    })->name('link');
-
-    Route::get('portfolio',function(){
-        return view('client.portfolio');
-    })->name('portfolio');
-
-    Route::get('project',function(){
-        return view('client.project');
-    })->name('project');
-
-});
-
-
-
-
-
-
-
-/* Route::get('user/{a}',function($a){
-    $p = 4 * $a;
-    return $p;
-
-}); */
-/* Route::get('user/{name}/{id}',function($name, $id){
-    return "Welcome $id - $name";
-
-}); */
-/* Route::get('user/{a}/{b}',function($a, $b){
-    $p = $a * $b;
-    return $p;
-}); */
-
-/* Route::get('user/{b}',function($b){
-    $k = floor($b/1024);
-    return $k;
-
-}); */
-/* Route::get('user/{a}/{b}',function($a,$b){
-    return floor($a/$b);
-
-
-}); */
-/* Route::get('user/{n}',function($n){
-    if($n>0)
-        return ++$n;
-
-    else
-        return $n;
-}); */
-/* Route::get('user/{a}',function($a,$b,){
-    $a = $a+$b/2;
-    return $a;
-
-});
- */
-/* function geometric_mean($a, $b) {
-    return sqrt($a * $b);
-  }
-
-  $number1 = 8;
-  $number2 = 12;
-
-  $result = geometric_mean($number1, $number2);
-
-  echo "The geometric mean of " . $number1 . " and " . $number2 . " is " . $result;
-
 
  */
-/* Route::get('user/{a}/{b}',function($a,$b,){
-    if($b < $a);
-    {
-        $c = $a;
-        $a = $b;
-    }
-    return "a = $a, b = $b";
-
-})
- */
-Route::get('/',[PagesController::class, 'welcome'])->name('welcome');
+/* Route::get('/',[PagesController::class, 'welcome'])->name('welcome');
 
 Route::get('/',[PagesController::class, 'about'])->name('about');
 
 Route::get('/',[PagesController::class, 'contact'])->name('contact');
 ?>
+ */
+
+Route::get('/',[PagesController::class, 'welcome'])->name('welcome');
+Route::get('/groups',[PagesController::class, 'groups'])->name('grpups');
+Route::get('/teachers', [PagesController::class, 'teachers'])->name('teachers');
+Route::get('/wins', [PagesController::class, 'wins'])->name('wins');
+Route::get('/gallery', [PagesController::class, 'gallery'])->name('gallery');
+Route::get('/blogs', [PagesController::class, 'blogs'])->name('blogs');
+
+Route::post('/order/store', [PagesController::class, 'store'])->name('order.store');
+
+
+//Admin routes start
+Route::prefix('admin/')->name('admin.')->middleware('auth')->group(function(){
+    Route::get('dashboard',function(){
+        return view('admin.layouts.dashboard');
+    })->name('dashboard');
+
+    Route::resource('infos',InfoController::class);
+
+    /* Route::get('infos/index', [InfoController::class, 'index'])->name('infos.index');
+    Route::get('infos/create', [InfoController::class, 'create'])->name('infos.create');
+    Route::post('infos/store', [InfoController::class, 'store'])->name('infos.store');
+    Route::get('infos/show/{id}', [InfoController::class, 'show'])->name('infos.show');
+    Route::get('infos/edit/{id}', [InfoController::class, 'edit'])->name('infos.edit');
+    Route::put('infos/update/{id}', [InfoController::class, 'update'])->name('infos.update');
+    Route::delete('infos/destroy/{id}', [InfoController::class, 'destroy'])->name('infos.destroy');
+ */
+
+});

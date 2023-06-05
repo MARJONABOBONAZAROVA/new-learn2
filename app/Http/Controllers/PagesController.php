@@ -3,18 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PagesController extends Controller
 {
-    public function welcome(){
-        return view('welcome');
+    public function blogs(){
+        return view('pages.blogs');
     }
 
-    public function about(){
-        return view('about');
-    }
+    public function  store(Request $request){
+        DB::table('orders')->insert([
 
-    public function contact(){
-        return view('about');
+        'name' => $request->name,
+        'phone' => $request->phone,
+        'group' => $request->group
+
+        ]);
+
+        return back();
+
+
     }
 }
