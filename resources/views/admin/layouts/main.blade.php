@@ -20,29 +20,31 @@
 			<i class='bx bxs-smile'></i>
 			<span class="text">AdminHub</span>
 		</a>
+		<br>
 		<ul class="side-menu top">
 			<li class="active">
-				<a href="#">
+					<a href="{{route('admin.layouts.dashboard')}}">
 					<i class='bx bxs-dashboard' ></i>
 					<span class="text">Dashboard</span>
 				</a>
+			  </a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="{{route('admin.infos.index')}}">
 					<i class='bx bxs-shopping-bag-alt' ></i>
 					<span class="text">Infos</span>
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="{{route('admin.numbers.index')}}">
 					<i class='bx bxs-doughnut-chart' ></i>
-					<span class="text">Groups</span>
+					<span class="text">Numbers</span>
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="{{route('admin.humans.index')}}">
 					<i class='bx bxs-message-dots' ></i>
-					<span class="text">Teachers</span>
+					<span class="text">Humans</span>
 				</a>
 			</li>
 			<li>
@@ -90,6 +92,10 @@
 			<li>
 				<a href="#" class="logout">
 					<i class='bx bxs-log-out-circle' ></i>
+					<form action="{{-- {{route('logout')}} --}}" method="POST">
+					@csrf
+					<button class="text">Logout</button>
+				</form>
 					<span class="text">Logout</span>
 				</a>
 			</li>

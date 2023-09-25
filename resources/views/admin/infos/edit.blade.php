@@ -21,8 +21,8 @@
                         <strong> title :</strong>
                         <input type="text" name="title" value="{{ $info->title }}" class="form-control"> <br>
 
-                        <strong> Description :</strong>
-                        <input type="text" name="description" value="{{ $info->description }}" class="form-control"> <br>
+                        {{-- <strong> Description :</strong>
+                        <input type="text" name="description" value="{{ $info->description }}" class="form-control"> <br> --}}
 
                         <strong> Rasm(png yoki jpg) :</strong>
                         <input type="file" name="icon" class="form-control"> <br>

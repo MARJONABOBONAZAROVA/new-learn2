@@ -9,7 +9,7 @@
     <meta content="Free HTML Templates" name="description">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <link href="/assets/img/favicon.ico" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -161,12 +161,16 @@
     <script src="/assets/lib/isotope/isotope.pkgd.min.js"></script>
     <script src="/assets/lib/lightbox/js/lightbox.min.js"></script>
 
+
     <!-- Contact Javascript File -->
     <script src="/assets/mail/jqBootstrapValidation.min.js"></script>
     <script src="/assets/mail/contact.js"></script>
 
     <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+    <script src="/assets/js/main.js"></script>
+
+
+
 </body>
 
 </html>

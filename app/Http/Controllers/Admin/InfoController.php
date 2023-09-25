@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\InfoStoreRequest;
 use App\Models\Info;
 
 class InfoController extends Controller
@@ -15,10 +16,11 @@ class InfoController extends Controller
      */
     public function index()
     {
+        //return Info::count();
 
-        $infos = Info::orderBy('id','DESC')->get();
+        $infos = Info::orderBy('id','DESC')->paginate(6);
            /* $infos = Info::all(); */
-        return view('admin','infos','index', compact('infos'));
+        return view('admin.infos.index', compact('infos'));
 
 
     }
@@ -39,13 +41,28 @@ class InfoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(InfoStoreRequest $request)
     {
+
+
         $info = new Info;
         $info->title = $request->title;
         $info->description = $request->description;
         $info->save();
+        /* $requestData = $request->all;
+        if($request->hasFile('icon'));
+        {
+            $requestData['icon'] = $this->upload_file(); */
+            /* $file = $request()->file('icon');
+            $fileName = time().'_' .$file->getClientOriginalName();
+            $file->move('files/',$fileName);
+            $requestData['icon'] = $fileName;
+ */
+
+        /* }
+        Info::create($requestData);*/
         return redirect()->route('admin.infos.index');
+
 
     }
 
@@ -58,7 +75,7 @@ class InfoController extends Controller
     public function show($id)
     {
         $info = Info::find($id);
-        return view('admin.index.show',compact('info'));
+        return view('admin.infos.show',compact('info'));
     }
 
     /**
@@ -70,7 +87,7 @@ class InfoController extends Controller
     public function edit($id)
     {
         $info = Info::find($id);
-        return view('admin.index.edit',compact('info'));
+        return view('admin.infos.edit',compact('info'));
     }
 
     /**
@@ -80,14 +97,32 @@ class InfoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Info $info/* $id */)
     {
-        Info::find($id)->update([
+        /* Info::find($id)->update([
             'title' => $request->title,
             'description' =>$request->description,
 
+        ]); */
+        request()->validate([
+            'title'=>'required',
+            'description'=> 'required',
+            'icon'=>'mimes:png,jpg|max:2048'
         ]);
+        $requestData = $request->all();
+
+        if($request->hasFile('icon'));
+        {
+
+        /* if(isset($info->icon) && file_exists(public_path(' /files/' .$info->icon))){
+            unlink(public_path(' /files/' .$info->icon));
+
+        } */
+
+        }
+        $info->update($requestData);
         return redirect()->route('admin.infos.index');
+
     }
 
     /**
@@ -99,5 +134,14 @@ class InfoController extends Controller
     public function destroy($id)
     {
         Info::find($id)->delete();
+    }
+    public function file_upload(){
+
+
+        $file = request()->file('icon');
+        $fileName = time().'_' .$file->getClientOriginalName();
+        $file->move('files/',$fileName);
+        return  $fileName;
+
     }
 }
