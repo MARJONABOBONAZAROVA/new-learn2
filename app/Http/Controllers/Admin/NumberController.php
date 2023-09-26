@@ -65,7 +65,7 @@ class NumberController extends Controller
      */
     public function edit(Number $number)
     {
-        return view('admin.numbers.edit', compact('nimber'));
+        return view('admin.numbers.edit', compact('number'));
     }
 
     /**

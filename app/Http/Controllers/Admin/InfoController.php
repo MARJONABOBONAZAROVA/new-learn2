@@ -4,8 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\InfoStoreRequest;
+
 use App\Models\Info;
+use App\Events\AuditEvent;
+use App\Http\Requests\InfoStoreRequest;
+use App\Http\Requests\InfoUpdateRequest;
+
+
 
 class InfoController extends Controller
 {
@@ -45,22 +50,21 @@ class InfoController extends Controller
     {
 
 
-        $info = new Info;
+        /* $info = new Info;
         $info->title = $request->title;
         $info->description = $request->description;
-        $info->save();
-        /* $requestData = $request->all;
+        $info->save(); */
+        $requestData = $request->all;
         if($request->hasFile('icon'));
         {
-            $requestData['icon'] = $this->upload_file(); */
-            /* $file = $request()->file('icon');
+            /* $requestData['icon'] = $this->upload_file(); */
+            $file = request()->file('icon');
             $fileName = time().'_' .$file->getClientOriginalName();
             $file->move('files/',$fileName);
             $requestData['icon'] = $fileName;
- */
 
-        /* }
-        Info::create($requestData);*/
+    }
+        Info::create($requestData);
         return redirect()->route('admin.infos.index');
 
 
@@ -131,17 +135,24 @@ class InfoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Info $info)
     {
-        Info::find($id)->delete();
+        $user = auth()->user()->name;
+        event(new AuditEvent($user, 'infos', 'delete', json_encode($info)));
+
+        if(isset($info->icon) && file_exists(public_path('/files/'.$info->icon))){
+            unlink(public_path('/files/'.$info->icon));
+        }
+
+        $info->delete();
+
+        return redirect()->route('admin.infos.index');
     }
-    public function file_upload(){
 
-
+    public function icon_upload(){
         $file = request()->file('icon');
-        $fileName = time().'_' .$file->getClientOriginalName();
-        $file->move('files/',$fileName);
-        return  $fileName;
-
+        $fileName = time().'-'.$file->getClientOriginalName();
+        $file->move('files/', $fileName);
+        return $fileName;
     }
-}
+    }

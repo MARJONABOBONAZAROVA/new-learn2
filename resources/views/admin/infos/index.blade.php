@@ -31,7 +31,7 @@
                         <th>#</th>
                         <th>Title</th>
                         <th>Description</th>
-                       {{--  <th>image</th> --}}
+                        <th>image</th>
                         <th>Data</th>
                         <th>Action</th>
 
@@ -43,15 +43,20 @@
                             <td>{{ ++$loop->index }}</td>
                             <td>{{ $item->title }}</td>
                             <td>{{ $item->description }}</td>
-                            {{-- <td><img src="/files{{ $item->icon}}" width="60px"></td> --}}
+                            <td><img src="/files/{{ $item->icon }}" width="60px"></td>
+
                             <td>{{ $item->created_at }}</td>
 
                         <td>
+
+
                             <form method="POST" action="{{ route('admin.infos.destroy', $item->id) }}">
                                 @csrf
                                 @method('DELETE')
 
                                 <a class="btn btn-primary" href="{{ route('admin.infos.show', $item->id) }}"><ion-icon name="eye-outline"></ion-icon></a>
+
+
                                 <a class="btn btn-primary" href="{{ route('admin.infos.edit', $item->id) }}"><ion-icon name="create-outline"></ion-icon></a>
 
                                 <button type="submit" class="btn btn-danger" onclick="return confirm('Do you want to delete ?')"><ion-icon name="trash-outline"></ion-icon></button>
@@ -63,7 +68,7 @@
 
                 </tbody>
             </table>
-            {{-- {{$infos->links()}} --}}
+            {{$infos->links()}}
         </div>
 
     </div>

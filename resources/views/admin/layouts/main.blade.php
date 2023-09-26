@@ -5,9 +5,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<!-- Boxicons -->
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet">
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 	<!-- My CSS -->
 	<link rel="stylesheet" href="/admin/style.css">
+	<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
 	<title>AdminHub</title>
 </head>
@@ -23,7 +27,7 @@
 		<br>
 		<ul class="side-menu top">
 			<li class="active">
-					<a href="{{route('admin.layouts.dashboard')}}">
+					<a href={{-- "{{route('admin.layouts.dashboard')}}" --}}>
 					<i class='bx bxs-dashboard' ></i>
 					<span class="text">Dashboard</span>
 				</a>
@@ -92,7 +96,7 @@
 			<li>
 				<a href="#" class="logout">
 					<i class='bx bxs-log-out-circle' ></i>
-					<form action="{{-- {{route('logout')}} --}}" method="POST">
+					<form action="{{route('logout')}}" method="POST">
 					@csrf
 					<button class="text">Logout</button>
 				</form>

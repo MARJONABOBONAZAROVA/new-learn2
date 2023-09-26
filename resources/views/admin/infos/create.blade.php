@@ -29,20 +29,15 @@
                     <form class="create__inputs" action="{{ route('admin.infos.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <strong> title :</strong>
-                        <input type="text" name="title" value="{{ old ('title') }}" class="form-control"> <br>
-                        @error('title') {{ $message }} <br><br> @enderror
+                        <input type="text" name="title" class="form-control"> <br>
 
                         <strong> Description :</strong>
-                        <input type="text" name="title" value="{{ old ('title') }}" class="form-control"> <br>
-                        @error('title') {{ $message }} <br><br> @enderror
+                        <input type="text" name="description" class="form-control"> <br>
 
-
-
-                        {{-- <strong> Rasm(png yoki jpg) :</strong>
-                        <input type="file" name="icon" class="form-control"> <br> --}}
+                        <strong> Rasm(png yoki jpg) :</strong>
+                        <input type="file" name="icon" class="form-control"> <br>
 
                         <input type="submit" value="Qo`shish">
-
                     </form>
                 </div>
 

@@ -3,7 +3,7 @@
 
 @section('content')
 
-   @if ($error->any())
+   @if ($errors->any())
            <div class="alert alert-danger">
             <strong>Whoops!</strong>There were some problems with your input.<br><br>
             <ul>
@@ -30,7 +30,7 @@
                         <strong> title :</strong>
                         <input type="number" name="number" value="{{ $number->number }}" class="form-control"> <br>
 
-                        
+
 
                         <input type="submit" value="Edit">
 

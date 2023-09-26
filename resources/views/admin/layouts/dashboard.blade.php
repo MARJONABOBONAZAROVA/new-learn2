@@ -1,6 +1,7 @@
 @extends('admin.layouts.main')
 @section('content')
 
+
 <!-- MAIN -->
 <main>
     <div class="head-title">
@@ -46,8 +47,9 @@
         </li>
     </ul>
 
+	<script src="/admin/script.js"></script>
 
-    <div class="table-data">
+    {{-- <div class="table-data">
         <div class="order">
             <div class="head">
                 <h3>Recent Orders</h3>
@@ -135,7 +137,7 @@
                 </li>
             </ul>
         </div>
-    </div>
+    </div> --}}
 </main>
 <!-- MAIN -->
 

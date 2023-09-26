@@ -9,7 +9,7 @@
     <meta content="Free HTML Templates" name="description">
 
     <!-- Favicon -->
-    <link href="/assets/img/favicon.ico" rel="icon">
+    <link href="/img/favicon.ico" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -165,6 +165,7 @@
     <!-- Contact Javascript File -->
     <script src="/assets/mail/jqBootstrapValidation.min.js"></script>
     <script src="/assets/mail/contact.js"></script>
+   
 
     <!-- Template Javascript -->
     <script src="/assets/js/main.js"></script>

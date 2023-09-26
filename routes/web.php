@@ -8,7 +8,9 @@ use PhpParser\Node\Stmt\Return_;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\Admin\InfoController;
 use App\Http\Controllers\Admin\NumberController;
-use App\Http\Controllers\Auth;
+/* use App\Http\Controllers\Auth;*/
+ use Illuminate\Support\Facades\Auth;
+
 
 
 /*

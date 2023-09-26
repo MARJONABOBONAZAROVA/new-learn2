@@ -23,8 +23,9 @@ class InfoStoreRequest extends FormRequest
      */
     public function rules()
     {
+        /* max:7|numeric */
         return [
-            'title'=>'required|min:3|max:7|numeric',
+            'title'=>'required|min:3|',
             'description'=>'required',
             'icon'=>'mimes:png,jpg|max:2048'
         ];

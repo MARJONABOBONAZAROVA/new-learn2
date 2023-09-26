@@ -46,6 +46,8 @@
                                 @csrf
                                 @method('DELETE')
 
+
+
                                 <a class="btn btn-primary" href="{{ route('admin.humans.show', $item->id) }}"><ion-icon name="eye-outline"></ion-icon></a>
                                 <a class="btn btn-primary" href="{{ route('admin.humans.edit', $item->id) }}"><ion-icon name="create-outline"></ion-icon></a>
 
@@ -58,7 +60,7 @@
 
             </tbody>
         </table>
-        {{-- {{$humans->links()}} --}}
+         {{$humans->links()}}
 
     </div>
 
