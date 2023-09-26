@@ -54,19 +54,17 @@ class InfoController extends Controller
         $info->title = $request->title;
         $info->description = $request->description;
         $info->save(); */
-        $requestData = $request->all;
-        if($request->hasFile('icon'));
-        {
-            /* $requestData['icon'] = $this->upload_file(); */
-            $file = request()->file('icon');
-            $fileName = time().'_' .$file->getClientOriginalName();
-            $file->move('files/',$fileName);
-            $requestData['icon'] = $fileName;
-
-    }
-        Info::create($requestData);
+        $info = new Info;
+        $info->title = $request->title;
+        $info->description = $request->description;
+        if ($request->hasFile('icon')); {
+            $file = $request->file('icon');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $file->move('files/', $fileName);
+            $info->icon = $fileName;
+        }
+        $info->save();
         return redirect()->route('admin.infos.index');
-
 
     }
 
@@ -91,6 +89,7 @@ class InfoController extends Controller
     public function edit($id)
     {
         $info = Info::find($id);
+        // dd($info);
         return view('admin.infos.edit',compact('info'));
     }
 
@@ -101,31 +100,24 @@ class InfoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Info $info/* $id */)
+    public function update(Request $request, Info $info)
     {
-        /* Info::find($id)->update([
-            'title' => $request->title,
-            'description' =>$request->description,
 
-        ]); */
-        request()->validate([
-            'title'=>'required',
-            'description'=> 'required',
-            'icon'=>'mimes:png,jpg|max:2048'
-        ]);
         $requestData = $request->all();
 
-        if($request->hasFile('icon'));
+        if ($request->hasFile('icon'));
         {
+            $file = request()->file('icon');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $file->move('files/', $fileName);
+            
 
-        /* if(isset($info->icon) && file_exists(public_path(' /files/' .$info->icon))){
-            unlink(public_path(' /files/' .$info->icon));
 
-        } */
-
+            $requestData['icon'] = $fileName;
         }
         $info->update($requestData);
         return redirect()->route('admin.infos.index');
+
 
     }
 
